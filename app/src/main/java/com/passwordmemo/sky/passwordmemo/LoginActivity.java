@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         String passwordStr=sp.getString("password",null);
         if (usernameStr!=null && passwordStr !=null){
             email.setText(usernameStr);
-            password.setText(passwordStr);
+            //password.setText(passwordStr);
 
         }
     }
