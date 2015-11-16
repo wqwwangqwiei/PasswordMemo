@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //3.存入数据库
         long aa=adminDao.insert(new Admin(null,email.getText().toString(),password.getText().toString()));
         AppMsg.makeText(RegisterActivity.this,"用户注册成功",AppMsg.STYLE_ALERT).show();
+        RegisterActivity.this.finish();
 
     }
 }

@@ -37,6 +37,11 @@
     </com.github.clans.fab.FloatingActionMenu>
 
 
-
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:text="注销"/>
 
 </FrameLayout>

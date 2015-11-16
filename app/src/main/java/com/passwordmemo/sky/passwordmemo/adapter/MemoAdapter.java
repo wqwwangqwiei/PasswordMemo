@@ -31,12 +31,10 @@ public class MemoAdapter extends BaseAdapter {
         public TextView password;
     }
 
-
-        public MemoAdapter(Context context, List<UserPassword> list){
+    public MemoAdapter(Context context, List<UserPassword> list){
         mContext=context;
         listdata=list;
         mInflater=LayoutInflater.from(mContext);
-
     }
 
     @Override
@@ -61,8 +59,6 @@ public class MemoAdapter extends BaseAdapter {
         holder.describe.setText(listdata.get(position).getDescribe());
         holder.username.setText(listdata.get(position).getAccount());
         holder.password.setText(listdata.get(position).getPassword());
-
-
 
         return convertView;
     }

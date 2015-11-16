@@ -2,6 +2,7 @@ package com.passwordmemo.sky.passwordmemo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,12 +30,10 @@ import butterknife.OnClick;
  */
 public class ShowActivity extends AppCompatActivity {
 
-    @Bind(R.id.list_memo)
-    ListView listMemo;
-    @Bind(R.id.fab_add)
-    FloatingActionButton addBtn; //添加记录按钮
-    @Bind(R.id.fab_menu)
-    FloatingActionMenu fabMenu;
+    @Bind(R.id.list_memo) ListView listMemo;
+    @Bind(R.id.fab_add) FloatingActionButton addBtn; //添加记录按钮
+    @Bind(R.id.fab_menu) FloatingActionMenu fabMenu;
+
     private DaoSession mDaoSession;
     private UserPasswordDao userPasswordDao;
 
@@ -58,7 +57,7 @@ public class ShowActivity extends AppCompatActivity {
 
         listMemo.addHeaderView(inflater.inflate(R.layout.adapter_account_item, null));
 
-        listdata = userPasswordDao.queryBuilder().where(UserPasswordDao.Properties.AdminId.eq(GlobalApp.userId)).list();//只查出相关的
+        listdata = getDataList();//只查出相关的
 
         memoAdapter = new MemoAdapter(ShowActivity.this, listdata);
         listMemo.setAdapter(memoAdapter);
@@ -90,8 +89,6 @@ public class ShowActivity extends AppCompatActivity {
                         refresh();
                         Log.i(ShowActivity.class.getName(),
                                 account_username.getText().toString() + " " + account_password.getText().toString());
-
-
                     }
                 }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
@@ -119,9 +116,27 @@ public class ShowActivity extends AppCompatActivity {
     public void refresh() {
         //首先要更新数据源，然后再更新适配器
         listdata.clear();
-        listdata.addAll(userPasswordDao.queryBuilder().list());
+        listdata.addAll(getDataList());
         memoAdapter.notifyDataSetChanged();
         Log.i(ShowActivity.class.getName(), "刷新操作");
+    }
+
+    /**
+     * 数据查询
+     * @return 数据集合
+     */
+    public List<UserPassword> getDataList(){
+        return userPasswordDao.queryBuilder().where(UserPasswordDao.Properties.AdminId.eq(GlobalApp.userId)).list();
+    }
+
+    /**
+     * 注销登录
+     */
+    @OnClick(R.id.logout)
+    public void logout(){
+        Intent intent=new Intent(ShowActivity.this,LoginActivity.class);
+        startActivity(intent);
+        ShowActivity.this.finish();
     }
 }
 

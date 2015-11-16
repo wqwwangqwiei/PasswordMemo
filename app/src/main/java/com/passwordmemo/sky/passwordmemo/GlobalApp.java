@@ -18,7 +18,7 @@ public class GlobalApp extends Application{
     //数据库名，表名是自动被创建的
     public static final String DB_NAME = "iDemo";
 
-    public static Long userId=0l;
+    public static Long userId=0l;   //保存登录用户id
 
 
     //获得daoMaster对象
