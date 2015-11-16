@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <!-- login -->
     <EditText
         android:id="@+id/user_name"
         android:layout_width="200dp"
