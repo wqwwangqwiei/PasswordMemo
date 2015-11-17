@@ -126,7 +126,9 @@ public class ShowActivity extends AppCompatActivity {
      * @return 数据集合
      */
     public List<UserPassword> getDataList(){
+
         return userPasswordDao.queryBuilder().where(UserPasswordDao.Properties.AdminId.eq(GlobalApp.userId)).list();
+
     }
 
     /**
@@ -139,20 +141,6 @@ public class ShowActivity extends AppCompatActivity {
         ShowActivity.this.finish();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
